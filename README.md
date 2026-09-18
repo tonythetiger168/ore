@@ -1,3 +1,11 @@
+# ore -- open PoW silicon platform
+
+An open RISC-V mining/PoW SoC reference design: RTL + golden-verified
+software + models + tapeout/business docs. From midstate math to shuttle
+checklists, every number is anchored or gated.
+
+GitHub: https://github.com/<you>/ore   (if `ore` is taken: `ore-soc`)
+
 # Mining SoC with RISC-V BOOM + SHA-256d accelerator
 
 Reference implementation for the blog-post series "Build a mining chip with
