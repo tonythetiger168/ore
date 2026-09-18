@@ -20,7 +20,7 @@ compiles; Verilator sim of Rocket works, Boom needs more.
     scripts/integrate_into_chipyard.sh <chipyard-dir>
 
 Copies hw/*.scala into the chipyard subproject and patches
-generators/chipyard/src/main/scala/Subsystem.scala to mix in
+generators/chipyard/src/main/scala/DigitalTop.scala to mix in
 CanHavePeripheryMiningAccel (one line, same pattern as CanHavePeripheryGCD).
 
 ## Build our configs
@@ -33,7 +33,7 @@ CanHavePeripheryMiningAccel (one line, same pattern as CanHavePeripheryGCD).
 ## CONFIRMED against chipyard main @371ab92 (2026-09)
 
 - SubsystemInjectorKey is REMOVED from rocket-chip. Attachment is now a
-  CanHavePeriphery* trait mixed into ChipyardSubsystem (reference pattern:
+  CanHavePeriphery* trait mixed into DigitalTop (reference pattern:
   generators/chipyard/src/main/scala/example/GCD.scala). Older guides
   mentioning SubsystemInjector are obsolete.
 - pbus.coupleTo still exists (rocket-chip .../subsystem/BusWrapper.scala).
