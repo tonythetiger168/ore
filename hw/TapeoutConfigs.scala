@@ -10,14 +10,12 @@ import org.chipsalliance.cde.config.Config
 // (MiningParams.engines), so this is a config-only change.
 class RocketMiningTapeout28Config extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 32)) ++
-  new WithMiningAttach ++
   new WithNSmallCores(1) ++
   new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)
 
 class RocketMiningTapeout16Config extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 64)) ++
-  new WithMiningAttach ++
   new WithNSmallCores(1) ++
   new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)

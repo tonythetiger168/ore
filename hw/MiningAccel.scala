@@ -262,27 +262,29 @@ class MiningAccelWrapper(implicit p: Parameters) extends LazyModule {
 }
 
 // ---------------------------------------------------------------------------
-// Chipyard config: attach to pbus + PLIC, pair with 1x small BOOM
+// Chipyard config. Modern attachment (SubsystemInjector was REMOVED from
+// rocket-chip; verified against chipyard main @371ab92): a CanHavePeriphery
+// trait, mixed into ChipyardSubsystem -- see
+// generators/chipyard/src/main/scala/Subsystem.scala (one-line patch,
+// scripted in scripts/integrate_into_chipyard.sh) and the GCD example.
 // ---------------------------------------------------------------------------
 class WithMiningAccel(params: MiningParams = MiningParams())
     extends Config((site, here, up) => { case MiningAccelKey => Some(params) })
 
-object WithMiningAttach extends Config((site, here, up) => {
-  case SubsystemInjectorKey =>
-    up(SubsystemInjectorKey) + SubsystemInjector(globalName = "MiningAccel",
-      mod = (p, base) => {
-        implicit val pp: Parameters = p
-        val accel = LazyModule(new MiningAccelWrapper)
-        base.pbus.coupleTo("mining-accel") { accel.node := TLWidthWidget(8) := _ }
-        base.plicOpt.foreach { plic =>
-          accel.intnode.out.foreach { case (b, e) => plic.intnode := e.fromSource(b) }
-        }
-        accel
-      })
-})
+trait CanHavePeripheryMiningAccel { this: BaseSubsystem =>
+  val miningAccel = p(MiningAccelKey).map { _ =>
+    val accel = LazyModule(new MiningAccelWrapper()(p))
+    pbus.coupleTo("mining-accel") {
+      accel.node := TLFragmenter(pbus.beatBytes, pbus.blockBytes) := TLBuffer() := _
+    }
+    plicOpt.foreach { plic =>
+      accel.intnode.out.foreach { case (b, e) => plic.intnode := e.fromSource(b) }
+    }
+    accel
+  }
+}
 
 class BoomMiningConfig extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 8)) ++
-  new WithMiningAttach ++
   new boom.common.WithNSmallBooms(1) ++
   new chipyard.config.AbstractConfig)

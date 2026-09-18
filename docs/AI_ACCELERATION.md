@@ -28,7 +28,7 @@ Chipyard ships Gemmini (Berkeley systolic-array NPU, ONNX/TVM flow,
 FireSim + Spike support). Adding it is a CONFIG, not a project:
 
     class RocketMiningAiConfig extends Config(
-      new WithMiningAccel(...) ++ new WithMiningAttach ++
+      new WithMiningAccel(...) ++            // trait mixed in via scripts/integrate_into_chipyard.sh
       new gemmini.DefaultGemminiConfig ++          // check version drift
       new WithNSmallCores(1) ++ new WithTinyControlRocket ++
       new chipyard.config.AbstractConfig)

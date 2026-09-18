@@ -8,7 +8,7 @@ import org.chipsalliance.cde.config.Config
 //
 // Compose AFTER WithNSmallBooms (it maps over the tiles that config creates):
 //   class BoomMiningConfig extends Config(
-//     new WithMiningAccel(...) ++ new WithMiningAttach ++
+//     new WithMiningAccel(...) ++            // trait mixed in via scripts/integrate_into_chipyard.sh
 //     new boom.common.WithNSmallBooms(1) ++ new WithTinyControlBoom ++
 //     new chipyard.config.AbstractConfig)
 //

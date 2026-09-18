@@ -8,7 +8,6 @@ import org.chipsalliance.cde.config.Config
 // at 0x10020000 -- rebase one (set gemmini params or move MiningParams.base).
 class RocketMiningAiConfig extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 32)) ++
-  new WithMiningAttach ++
   new gemmini.DefaultGemminiConfig ++
   new WithNSmallCores(1) ++
   new WithTinyControlRocket ++

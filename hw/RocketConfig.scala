@@ -35,7 +35,6 @@ class WithTinyControlRocket extends Config((site, here, up) => {
 // Primary tapeout-oriented config: 1x small Rocket + 8 mining engines.
 class RocketMiningConfig extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 8)) ++
-  new WithMiningAttach ++
   new WithNSmallCores(1) ++         // use WithNBigCores(1) for more headroom
   new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)
@@ -44,7 +43,6 @@ class RocketMiningConfig extends Config(
 // DVFS / OTA updates. Still tiny compared to the engine array.
 class RocketMiningDualConfig extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 8)) ++
-  new WithMiningAttach ++
   new WithNSmallCores(2) ++
   new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)
