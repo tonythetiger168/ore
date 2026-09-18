@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+target/
+*.class
+*.o
+*.riscv
+*.zip
+.DS_Store
