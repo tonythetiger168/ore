@@ -1,0 +1,9 @@
+{
+  "benchmark_name": "miner-smoke",
+  "common_bootbinary": ["<ABS_PATH_TO>/miner_baremetal.riscv"],
+  "common_simulation_inputs": [],
+  "common_outputs": [],
+  "workloads": [
+    { "simulation_name": "miner-smoke-0", "command": "runone miner-smoke-0", "macros": [] }
+  ]
+}
