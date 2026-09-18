@@ -1,0 +1,86 @@
+{
+  "name": "bitcoin-genesis",
+  "block1_words": [
+    "01000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "3ba3edfd",
+    "7a7b12b2",
+    "7ac72c3e",
+    "67768f61",
+    "7fc81bc3",
+    "888a5132",
+    "3a9fb8aa"
+  ],
+  "block2_const_words": [
+    "4b1e5e4a",
+    "29ab5f49",
+    "ffff001d",
+    "00000000",
+    "80000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000000",
+    "00000280"
+  ],
+  "real_target": "00000000ffff0000000000000000000000000000000000000000000000000000",
+  "real_nonce": 2083236893,
+  "compare": "LE integer: sum(bswap32(word_i) << 32*i); hw: whole digest byte-reversed, compare as BE 256-bit",
+  "sim_vectors": [
+    {
+      "nonce": 0,
+      "outer_words": [
+        "bf483998",
+        "a9b44cbf",
+        "5a113973",
+        "e34da96b",
+        "5cf3c775",
+        "7d75ac3b",
+        "d7c6b30a",
+        "f5a7c12b"
+      ],
+      "outer_int": "f5a7c12bd7c6b30a7d75ac3b5cf3c775e34da96b5a113973a9b44cbfbf483998"
+    },
+    {
+      "nonce": 1,
+      "outer_words": [
+        "10f705b1",
+        "d4a5d689",
+        "dc95e6dc",
+        "5f889f3b",
+        "da19b7cc",
+        "d3e79f19",
+        "6841e685",
+        "789d6f93"
+      ],
+      "outer_int": "789d6f936841e685d3e79f19da19b7cc5f889f3bdc95e6dcd4a5d68910f705b1"
+    },
+    {
+      "nonce": 2,
+      "outer_words": [
+        "7bcb8552",
+        "28f72fbb",
+        "e88fb9c8",
+        "def0cab9",
+        "3efd4c8b",
+        "a43ac00c",
+        "7c101562",
+        "0e97ef7e"
+      ],
+      "outer_int": "0e97ef7e7c101562a43ac00c3efd4c8bdef0cab9e88fb9c828f72fbb7bcb8552"
+    }
+  ]
+}
