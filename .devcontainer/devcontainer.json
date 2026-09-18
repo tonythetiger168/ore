@@ -1,0 +1,9 @@
+{
+  "name": "mining-soc",
+  "build": { "context": "..", "dockerfile": "Dockerfile" },
+  "remoteUser": "dev",
+  "customizations": {
+    "vscode": { "extensions": ["scala-lang.scala", "ms-vscode.cpptools"] }
+  },
+  "runArgs": ["--memory=12g", "--cpus=8"]
+}
