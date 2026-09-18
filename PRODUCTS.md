@@ -37,6 +37,14 @@ Value prop: Block-Proto-style openness WITH open silicon. GATED: only if
 Line A-16 measures <= 100 J/TH at rail (see kill criteria). Positioned at
 heat-reuse economics, not grid mining.
 
+### Line A2 -- AI option (Phase-2 gated, see docs/AI_ACCELERATION.md)
+
+Tier 1 (ML for DVFS/predictive-maintenance/thermal-MPC) ships with A-16
+firmware at no hardware cost. Tier 2 (Gemmini NPU on-die) is a config
+option gated at the A-16 freeze: enables Line A to sell as the only
+two-accelerator open SoC dev kit. Tier 3 (AI chip product line) is
+explicitly out of scope.
+
 ### Line D -- Services & Licensing  (margin, zero inventory)
 
 - Training/workshops on open mining-silicon flow (universities, 2-5 days).
