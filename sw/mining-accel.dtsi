@@ -1,0 +1,9 @@
+// mining-accel.dtsi -- device tree fragment (merge into SoC .dts)
+/ {
+    mining_accel: mining-accel@10020000 {
+        compatible = "edu,mining-accel";
+        reg = <0x0 0x10020000 0x0 0x1000>;
+        interrupts = <PLIC_SRC_MINING_IRQ>;
+        status = "okay";
+    };
+};

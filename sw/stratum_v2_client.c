@@ -35,6 +35,8 @@ static void put_u24le(uint8_t **p, uint32_t v) { put_u8(p, v); put_u8(p, v >> 8)
 static void put_u32le(uint8_t **p, uint32_t v) { put_u8(p,v); put_u8(p,v>>8); put_u8(p,v>>16); put_u8(p,v>>24); }
 static void put_bytes(uint8_t **p, const uint8_t *b, uint32_t n) { memcpy(*p, b, n); *p += n; }
 static uint8_t get_u8(const uint8_t **p) { return *(*p)++; }
+static void put_u64le(uint8_t **p, uint64_t v) { for (int i = 0; i < 8; i++) put_u8(p, (uint8_t)(v >> (8*i))); }
+static uint64_t get_u64le(const uint8_t **p) { uint64_t v = 0; for (int i = 0; i < 8; i++) v |= (uint64_t)get_u8(p) << (8*i); return v; }
 static uint16_t get_u16le(const uint8_t **p) { uint16_t v = get_u8(p); return v | ((uint16_t)get_u8(p) << 8); }
 static uint32_t get_u32le(const uint8_t **p) { uint32_t v = 0; for (int i = 0; i < 4; i++) v |= (uint32_t)get_u8(p) << (8*i); return v; }
 static void get_bytes(const uint8_t **p, uint8_t *b, uint32_t n) { memcpy(b, *p, n); *p += n; }
@@ -116,6 +118,12 @@ static int dispatch(const uint8_t *frame) {
         default: return -1;
     }
 }
-// NOTE: get_u64le missing on purpose -- the skeleton does not compile
-// standalone until the Noise layer lands; it is a structural map, not a
-// finished client. Official test vectors gate any production use.
+// NOTE: Noise transport is a stub (sv2_noise_stub_*). The message layer
+// compiles standalone; official sv2-spec test vectors gate production use.
+
+// ---- Noise transport stubs (replace with real NK handshake) -----------------
+static int sv2_noise_stub_handshake(int fd, const uint8_t *pk_pool, const uint8_t *sk_self) {
+    (void)fd; (void)pk_pool; (void)sk_self; return 0;
+}
+static int sv2_noise_stub_encrypt(uint8_t *buf, uint32_t n) { (void)buf; (void)n; return 0; }
+static int sv2_noise_stub_decrypt(uint8_t *buf, uint32_t n) { (void)buf; (void)n; return 0; }
