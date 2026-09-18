@@ -107,3 +107,25 @@ print("PIPELINE TRADEOFF: 128-stage costs +15% flops but V x0.883 ->")
 print("net = 0.883^2 x 1.30/1.45 = 0.70 (~30% less J/TH). For mining,")
 print("DEEP PIPELINE + LOW V beats shallow pipeline + high V.")
 
+# ---------------------------------------------------------------------------
+# Fixed-overhead amortization: J/TH_chip = (n*P_eng + P_fixed) / (n*HR_eng)
+# Engine-only J/TH (fc-16nm near-Vt, incl. overhead+leak) ~ 75-86; the
+# question is how much the control SoC + L2 + PLL + IO tax it.
+# ---------------------------------------------------------------------------
+print()
+print("=" * 78)
+print("ENGINE-COUNT SWEEP  (P_eng=74.9mW @1GHz incl. pipe overhead+leak;")
+print("P_fixed ~ 0.7W est: Rocket+SRAM+L2+PLL+pads+static)")
+print("=" * 78)
+P_ENG = 0.0749        # W per engine at 1 GHz (86 J/TH x 0.001 TH/s)
+P_FIX = 0.7           # W, control complex + static
+print("%-10s %9s %9s %9s" % ("engines", "P_chip W", "TH/s", "J/TH(chip)"))
+for n in [8, 16, 32, 64, 128, 256]:
+    p = P_ENG * n + P_FIX
+    th = n * 0.001
+    print("%-10d %9.2f %9.3f %9.1f" % (n, p, th, p / th))
+print()
+print("Rule of thumb: P_engines >= 3-5 x P_fixed amortizes the tax.")
+print("n=8  -> 2.5x penalty | n=64 -> 1.19x | n=128 -> 1.09x (diminishing)")
+
+
