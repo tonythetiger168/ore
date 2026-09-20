@@ -1,6 +1,7 @@
 package mining
 
 import org.chipsalliance.cde.config.Config
+import freechips.rocketchip.rocket._
 
 // Tapeout-scale configs: more engines to amortize the fixed power tax of
 // the control complex. See tapeout/energy_model.py "ENGINE-COUNT SWEEP":
@@ -11,11 +12,9 @@ import org.chipsalliance.cde.config.Config
 class RocketMiningTapeout28Config extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 32)) ++
   new WithNSmallCores(1) ++
-  new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)
 
 class RocketMiningTapeout16Config extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 64)) ++
   new WithNSmallCores(1) ++
-  new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)

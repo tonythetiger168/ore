@@ -16,7 +16,6 @@ engines do the actual hashing at 1 nonce/cycle/engine.
 
     hw/sha256.scala         64-stage fully-pipelined SHA-256 compression core
     hw/MiningAccel.scala    mining engine FSM + TileLink MMIO wrapper + Chipyard config
-    hw/ControlCoreConfig.scala  trimmed-BOOM fragment (no FPU, small caches)
     hw/RocketConfig.scala   Rocket-based configs: RocketMiningConfig (primary,
                             tapeout-oriented), RocketMiningDualConfig, and the
                             WithTinyControlRocket trim fragment

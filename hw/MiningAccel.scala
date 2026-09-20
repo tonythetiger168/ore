@@ -272,19 +272,18 @@ class WithMiningAccel(params: MiningParams = MiningParams())
     extends Config((site, here, up) => { case MiningAccelKey => Some(params) })
 
 trait CanHavePeripheryMiningAccel { this: BaseSubsystem =>
+  private val pbus = locateTLBusWrapper(PBUS)   // GCD-example pattern
   val miningAccel = p(MiningAccelKey).map { _ =>
     val accel = LazyModule(new MiningAccelWrapper()(p))
     pbus.coupleTo("mining-accel") {
       accel.node := TLFragmenter(pbus.beatBytes, pbus.blockBytes) := TLBuffer() := _
     }
-    plicOpt.foreach { plic =>
-      accel.intnode.out.foreach { case (b, e) => plic.intnode := e.fromSource(b) }
-    }
+    plicOpt.foreach { plic => plic.intnode := accel.intnode }  // IntNexusNode
     accel
   }
 }
 
 class BoomMiningConfig extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 8)) ++
-  new boom.common.WithNSmallBooms(1) ++
+  new boom.v3.common.WithNSmallBooms(1) ++
   new chipyard.config.AbstractConfig)

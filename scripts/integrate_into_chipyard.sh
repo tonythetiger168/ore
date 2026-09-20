@@ -6,7 +6,7 @@ set -euo pipefail
 CY=${1:?usage: integrate_into_chipyard.sh <chipyard-dir>}
 DEST="$CY/generators/chipyard/src/main/scala/mining"
 mkdir -p "$DEST"
-cp "$(dirname "$0")"/../hw/*.scala "$DEST/"
+cp "$(dirname "$0")"/../hw/*.scala "$DEST/"   # hw/optional (Gemmini cfg) excluded by design
 SUBSYS="$CY/generators/chipyard/src/main/scala/DigitalTop.scala"
 if ! grep -q CanHavePeripheryMiningAccel "$SUBSYS"; then
   # mix the trait into the subsystem class (same pattern as CanHavePeripheryGCD)

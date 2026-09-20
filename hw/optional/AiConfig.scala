@@ -1,6 +1,7 @@
 package mining
 
 import org.chipsalliance.cde.config.Config
+import freechips.rocketchip.rocket._
 
 // Tier 2 (docs/AI_ACCELERATION.md): add the Gemmini NPU alongside the
 // mining engines. OPTION gated at Phase 2 (A-16 freeze).
@@ -10,5 +11,4 @@ class RocketMiningAiConfig extends Config(
   new WithMiningAccel(MiningParams(base = 0x10020000L, engines = 32)) ++
   new gemmini.DefaultGemminiConfig ++
   new WithNSmallCores(1) ++
-  new WithTinyControlRocket ++
   new chipyard.config.AbstractConfig)
