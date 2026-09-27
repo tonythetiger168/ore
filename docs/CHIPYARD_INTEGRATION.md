@@ -47,3 +47,21 @@ CanHavePeripheryMiningAccel (one line, same pattern as CanHavePeripheryGCD).
 The dev sandbox used for this project resets its filesystem between
 sessions. Always keep the repo artifacts (zip/bundle) in durable storage;
 restore with: unzip mining_soc_github_v13.zip && git clone x.bundle
+
+
+## First-compile troubleshooting (from real attempts on chipyard main @371ab92)
+
+If `sbt chipyard/compile` shows errors in OUR files, these were the real
+ones found before (all fixed in v1.3.4, listed in case of version drift):
+
+1. `eng.clock := ...` in LowPowerAdditions.scala -- Chisel 6 forbids manual
+   clock wiring to module instances. Remove the line; ICG cells belong in
+   the integration layer (documented in the file).
+2. regmapper signatures (RegField.r / RegWriteFn / RegFieldDesc) -- diff
+   against generators/rocket-chip/src/main/scala/regmapper/RegField.scala.
+3. IntSourcePortSimple parameter names -- check
+   freechips/rocketchip/interrupts/Parameters.scala.
+4. boom package moved to boom.v3.common / boom.v4.common (we use v3).
+5. WithNSmallCores lives in freechips.rocketchip.rocket (not subsystem).
+6. Attach devices via a CanHavePeriphery* trait mixed into DigitalTop.scala
+   (NOT SubsystemInjector -- removed; NOT Subsystem.scala).
