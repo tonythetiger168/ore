@@ -1,5 +1,7 @@
 # ore -- open PoW silicon platform
 
+> **New here? Read HANDOFF.md first.**
+
 An open RISC-V mining/PoW SoC reference design: RTL + golden-verified
 software + models + tapeout/business docs. From midstate math to shuttle
 checklists, every number is anchored or gated.
