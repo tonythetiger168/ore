@@ -1,12 +1,15 @@
 # PRODUCTS.md -- product catalog & roadmap
 
-2026-10 v1.5.0 baseline (supersedes 2026-09 where marked). Numbers are
+2026-10-25 v1.6.0 baseline (supersedes 2026-09 where marked). Numbers are
 planning estimates, marked ~. Gates are quantitative; a missed gate kills
-or re-scopes the line, not the company. See BUSINESS.md (v1.5.0) for the
+or re-scopes the line, not the company. See BUSINESS.md (v1.6.0) for the
 market rationale -- 2026 Q3 invalidated the "openness sells at an
 efficiency penalty" premise (Block Proto's 15 EH/s order was terminated
-by the customer) and validated hash-to-heat (Canaan Nordic bid, MARA
-Finland) and counter-cyclical education demand.
+by the customer) and validated hash-to-heat; **[v1.6.0]** three weeks
+later: October recovery (BTC ~$80k, hashprice $37-41, hashrate >1 ZH/s),
+Canaan's 8 MW Nordic heat project fully operational, an EU consumer
+heat-mining category forming (21energy/Heatbit/Hestiia), Norway mandating
+10% DC heat reuse, and live alt-PoW ASIC competition (Bitdeer DL1).
 
 ## 1. Product catalog
 
@@ -33,13 +36,17 @@ Chipyard/RISC-V course in a box). Zero overlap with Bitmain.
 Value prop: retargetable PoW hardware in SoC form. Nobody else sells this.
 **[v1.5.0]** Catalysts added: post-quantum migration research, memory-hard
 PoW, sovereign-chain custom algorithms. Risk unchanged: market is small
-and research-budget-driven.
+and research-budget-driven. **[v1.6.0]** Alt-PoW is commercially ALIVE:
+Bitdeer SealMiner DL1 (0.149 J/MH) is challenging the Antminer L9 in
+Scrypt as L7-generation machines go unprofitable -- proof that
+non-SHA256d ASIC niches refresh on ~3-year cycles. B-1's memory-hard
+engine just moved from "research curiosity" to "addressable niche".
 
 ### Line C -- Hash-to-Heat Equipment  (v1.5.0 RENAMED from "Open Mining Appliance"; conditional, gated)
 
 | SKU | Form | Specs | Price | Customer |
 |-----|------|-------|-------|----------|
-| C-1 | Modular 2U liquid-cooled unit; 128-chip cold plates, UQD, leak tray, BMC; heat-reuse loop 55-60C outlet (docs/LIQUID_COOLING.md) | 16nm fc, near-Vt; Line A DVFS; SMART-style per-engine skip; thermal_policy() heat-follow mode in dvfs_daemon; open fleet mgmt + SV2 | BOM+30% | **district-heating operators, greenhouses, DHW pre-heat, off-grid/stranded-heat sites** |
+| C-1 | Modular 2U liquid-cooled unit; 128-chip cold plates, UQD, leak tray, BMC; heat-reuse loop 55-60C outlet (docs/LIQUID_COOLING.md) **[v1.6.0]** spec raised toward 75-80C outlet to match Canaan A1566HA reference** | 16nm fc, near-Vt; Line A DVFS; SMART-style per-engine skip; thermal_policy() heat-follow mode in dvfs_daemon; open fleet mgmt + SV2 | BOM+30% | **district-heating operators, greenhouses, DHW pre-heat, off-grid/stranded-heat sites; v1.6.0 adds apartment-block loops and agri-industrial (greenhouse) operators as entry segments** |
 
 Value prop: **[v1.5.0]** NOT "a worse Antminer for industrial miners"
 (that market is capitulating -- see BUSINESS.md 1.0). We sell HEATING
@@ -73,6 +80,11 @@ explicitly out of scope.
   near-Vt + bandit-DVFS stack does.
 - **[v1.5.0]** Hash-to-heat system-integration consulting (cold plate,
   CDU, control policy -- docs/LIQUID_COOLING.md is the deliverable skeleton).
+- **[v1.6.0]** PV-surplus / smart-home heat-mining CONTROL licensing:
+  the EU consumer category (21energy Ofen, Heatbit, Hestiia) needs
+  surplus-solar dispatch, heat-follow and quiet-mode firmware -- the same
+  thermal_policy() core, productized as a licensable binary + reference
+  design. ore sells the brain, not the box.
 - NOTE: core repo stays open (its value IS openness); services sell labor,
   not the RTL.
 
@@ -96,6 +108,11 @@ explicitly out of scope.
   (kills the last optimistic assumptions)
 - 28nm shuttle submission (validation vehicle; Caravel wrapper sketch in
   tapeout/)
+- **[v1.6.0] URGENT -- winter 2026/27 heat pilot (D+60, this heating
+  season)**: 5-20 kW of commercial hydro rigs (e.g. Canaan A1566HA-class)
+  + ore thermal_policy() heat-follow firmware on ONE paid greenhouse/DHW
+  loop in the EU. Line D services deal; goals: field dataset, reference
+  site photo/video, input to G2. Window closes ~Mar 2027.
 - **Gate G1 (2027-06)**: A-FPGA >= 20 paid pre-orders from >= 5
   institutions; energy model measured-vs-estimated within 2x. Fail ->
   Line A-28 re-scoped to FPGA-only + services.
@@ -154,7 +171,8 @@ explicitly out of scope.
 
 | Risk | P | Mitigation |
 |------|---|------------|
-| BTC < $70k / hashprice at record lows persists | H | Base case; revenue independent of mining economics (education, heat, licensing) |
+| **[v1.6.0]** Hashprice swings BOTH ways (Q3 $28 -> Oct $41) | H | Revenue independence from hashprice is the design goal in both directions; heat contracts + education + licensing are agnostic; only Line C hardware is exposed, de-sensitized by heat-first pricing |
+| **[v1.6.0]** Regulation cuts both ways (Norway: 10% heat-reuse mandate for DCs + PoW ban in DCs) | M | Track EU/Nordic heat-reuse mandates as TAILWIND (mining framed as heat infrastructure); avoid PoW-hostile jurisdictions for pilots; auditability story fits public procurement |
 | Open 16nm PDK/shuttle unavailable | M | G2 fallback: 28nm-only roadmap; heat pilots don't need our silicon |
 | DFT/scan maturity in open tools | M | Fund DFT early (P1); commercial sign-off as backup budget line |
 | Canaan/Bitmain push into hash-to-heat and squeeze Line C | M | Differentiate on auditability (public procurement); fallback to licensing the thermal/DVFS stack, not boxes |

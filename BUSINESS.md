@@ -1,9 +1,10 @@
 # BUSINESS.md -- 2026 mining-hardware landscape, positioning & strategy
 
-Last updated: 2026-10 (v1.5.0 market revision). Figures from public spec
-sheets / SEC filings / retail listings; ours are engineering estimates
+Last updated: 2026-10-25 (v1.6.0 market revision). Figures from public
+spec sheets / SEC filings / retail listings; ours are engineering estimates
 (marked ~). Where the 2026-09 survey was overtaken by events, the 2026-10
-correction is marked **[v1.5.0]**.
+correction is marked **[v1.5.0]**; the 2026-10-25 mid-month correction
+is marked **[v1.6.0]**.
 
 ## TL;DR
 
@@ -20,6 +21,22 @@ systems <30 days), and (b) counter-cyclical demand for open silicon
 education/research as miners pivot to AI/HPC. Strategy: become the best
 OPEN platform, reposition Line C from "open mining appliance" to
 "hash-to-heat equipment", and ride the two markets that are growing.
+**[v1.6.0]** Three weeks later (2026-10-25) the picture improved AGAIN:
+BTC rebounded to ~$80-81k, hashprice recovered to $37-41/PH/s (up ~22%
+from the Q3 trough), hashrate reclaimed 1 ZH/s, and difficulty rose +5.92%
+on Oct 16 (3rd-largest hike of 2026) with another ~+6% due Oct 29 -- the
+Q3 "capitulation" was CYCLICAL, not structural: inefficient capacity
+exited, efficient fleets stayed profitable, and the network is growing
+again. Meanwhile hash-to-heat crossed from validation to COMMERCIAL
+PROOF: Canaan's 8 MW Nordic district-heating project is fully operational
+(920 A1566HA hydro units, ~2,800 homes, 80C outlet, heat-following
+over/underclocking), a consumer heat-reuse-mining category formed in the
+EU (21energy Ofen 3 from EUR 1,990, Heatbit, Hestiia; whole-home Bitcoin
+central heating launching Nov 2026), and Norway now MANDATES 10% heat
+reuse for data centers (with a PoW-hostile carve-out -- regulation cuts
+both ways). Correction to our own correction: mining is not dying, it
+consolidated. Line C timing improves, and a paid winter-2026/27 EU heat
+pilot window is NOW open.
 
 ## 1. The 2026 field (all players)
 
@@ -36,6 +53,11 @@ OPEN platform, reposition Line C from "open mining appliance" to
 | Efficiency frontier | S23 Hyd 9.5 J/TH shipping ($15k); Auradine 3rd-gen Teraflux 9.8 J/TH volume Q3 2026 ($153M Series C); Bitdeer A3 sub-10 J/TH H1 2026 | spec sheets / PR |
 | Heat-reuse validation | Canaan won competitive Nordic district-heating hash-to-heat bid (2026-05); MARA Finland 2 district-heating systems integrated in <30 days (MW-scale); Mintgreen 12-yr heat-purchase agreement (7,000 homes) | PR / District Energy mag |
 | Market size | crypto-mining hardware +$12.05B 2023-2027 (CAGR 11.35%, NA 41%); overall mining $2.2B(2024)->$3.3B(2030), CAGR 6.9% | Technavio / R&M |
+| **[v1.6.0]** October recovery | BTC ~$80-81k; hashprice $36.75-41/PH/s; hashrate >1 ZH/s (1,025-1,101 EH/s); difficulty +5.92% to 140.58T (Oct 16), ~+6% est. Oct 29 | CoinWarz / Hashrate Index / Bitcoin.com |
+| **[v1.6.0]** Canaan heat COMMERCIAL | 8 MW Nordic district-heating project fully operational (Oct 2026): 228+692 A1566HA hydro units, ~2,800 homes, 80C outlet, heat-follow over/underclocking; 3 MW Manitoba greenhouse pilot (tomatoes) | Canaan / DCD |
+| **[v1.6.0]** EU consumer heat-mining category | 21energy Ofen 3 (Base EUR 1,990; Pro XL 2.2kW/120 TH/s, 110 m2) ships Oct-Nov 2026; Bitcoin central heating Nov 2026; rivals Heatbit, Hestiia; PV-surplus control units | fineeng.eu |
+| **[v1.6.0]** Regulation | Norway: 10% heat-reuse MANDATE for data centers from 2026 (mining cited explicitly) BUT temporary ban on new high-energy PoW in DCs | NYSERDA/DATA-HEAT |
+| **[v1.6.0]** Alt-PoW activity | Scrypt hashrate falling on L7 unprofitability; Bitdeer SealMiner DL1 (0.149 J/MH) challenging Antminer L9 -- alt-PoW ASIC market alive | mining press |
 
 ### 1.1 Player table (updated 2026-10)
 
@@ -86,6 +108,13 @@ OPEN platform, reposition Line C from "open mining appliance" to
    and district-heating operators become hardware buyers. The buyer of
    mining silicon in 2027+ is increasingly a HEAT operator or a
    research/education institution, not an industrial miner.
+7. **[v1.6.0]** Cycles are fast: the Q3 shakeout bottomed within one
+   quarter. Do not architect the company for perpetual depression (v1.5.0
+   over-rotated) NOR for a new bull run (v1.4.0 over-rotated). Architect
+   for REVENUE INDEPENDENCE from hashprice in BOTH directions: education,
+   heat contracts, and licensing are hashprice-agnostic; Line C hardware
+   is the only hashprice-sensitive exposure, and heat-revenue-first
+   pricing de-sensitizes it.
 
 ## 3. Our position
 
@@ -149,7 +178,13 @@ Kill criteria **[v1.5.0 revised]**:
   Proto's playbook (modular boards, open fleet mgmt, SV2) for the SYSTEM,
   but the moat is auditable open silicon for public-procurement buyers.
   Only if A1+A3 meet the revised kill criteria. We do NOT compete with
-  S23-class grid mining -- ever.
+  S23-class grid mining -- ever. **[v1.6.0]** Canaan's operational 8 MW
+  project sets the reference: 80C outlet, heat-following dispatch,
+  ~2,800 homes. ore's wedge is NOT scale -- it is (a) sub-MW modular
+  units for smaller heating loops (greenhouses, DHW, apartment blocks),
+  (b) the open/auditable control stack as a product, and (c) the
+  winter-2026/27 pilot window in the EU while incumbents are booked
+  with utility-scale deals.
 
 ## 6. Ops software catch-up (biggest gap vs Block/Auradine)
 
@@ -176,6 +211,11 @@ v1.5.0 revision 2026-10.)
          **[v1.5.0]** 1 paid LOI for a 50-100 kW hash-to-heat pilot
          (commercial rigs + ore control firmware; does NOT wait for our
          silicon).
+- **[v1.6.0]** D+60 URGENT (window closes with the EU heating season):
+         paid winter 2026/27 pilot -- 5-20 kW containerized commercial
+         hydro rigs + ore thermal_policy heat-follow firmware on a real
+         greenhouse/DHW loop. Goals: field data, reference site, and a
+         G2 input. This is a SERVICES deal (Line D), not hardware.
 
 ## 8. Risks **[v1.5.0 updated]**
 
